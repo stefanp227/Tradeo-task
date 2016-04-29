@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   	resources :tags, shallow: true
   end
 
+  get '/search/title/:title' => 'search#by_title'
+  get '/search/content/:content' => 'search#by_content'
+  get '/search/tags/:tags' => 'search#by_tag'
+  
 end
