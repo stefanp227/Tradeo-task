@@ -1,19 +1,25 @@
 class NotesController < ApplicationController
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
 
   def index
     @notes = Note.all
-  end
 
-	def new
-    @note = Note.new
+    respond_to do |format|
+      format.json { render json: @notes }
+    end
+
   end
 
   def show
     @note = Note.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @note }
+    end
   end
 
   def create
     @note = Note.new(note_params)
+    
     respond_to do |format|
       if @note.save
         format.json { render json: @note, status: :created }
@@ -26,6 +32,8 @@ class NotesController < ApplicationController
   end
     
   def destroy
+    @note = Note.find(params[:id])
+    
     respond_to do |format|
       if @note.destroy
         format.json { head :no_content, status: :ok }
@@ -35,8 +43,6 @@ class NotesController < ApplicationController
         format.xml { render xml: @note.errors, status: :unprocessable_entity }
       end
     end
-  end
-
   end
 
   def edit

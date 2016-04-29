@@ -1,3 +1,3 @@
 class Tag < ApplicationRecord
-	belongs_to :notes
+	belongs_to :note
 end
