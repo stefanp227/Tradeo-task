@@ -19,7 +19,7 @@ class TagsController < ApplicationController
 
 	def create
 		@tag = Tag.new(note_id: note_id_param, name: tag_params[:name])
-    debugger
+    
 		respond_to do |format|
       if @tag.save
         format.json { render json: @tag, status: :created }
@@ -32,6 +32,8 @@ class TagsController < ApplicationController
 	end
 
 	def update
+		@tag = Tag.find(params[:id])
+
 		respond_to do |format|
       if @tag.update(tag_params)
         format.json { render json: @tag, status: :ok }
@@ -45,7 +47,7 @@ class TagsController < ApplicationController
 
 	def destroy
 		@tag = Tag.find(params[:id])
-		
+
 		respond_to do |format|
       if @tag.destroy
         format.json { head :no_content, status: :ok }

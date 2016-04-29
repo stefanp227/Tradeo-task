@@ -12,6 +12,7 @@ class NotesController < ApplicationController
 
   def show
     @note = Note.find(params[:id])
+
     respond_to do |format|
       format.json { render json: @note }
     end
@@ -33,7 +34,7 @@ class NotesController < ApplicationController
     
   def destroy
     @note = Note.find(params[:id])
-    
+
     respond_to do |format|
       if @note.destroy
         format.json { head :no_content, status: :ok }
@@ -50,10 +51,12 @@ class NotesController < ApplicationController
   end
 
   def update
+    @note = Note.find(params[:id])
+
     respond_to do |format|
       if @note.update(note_params)
-        format.json { head :no_content, status: :ok }
-        format.xml { head :no_content, status: :ok }
+        format.json { render json: @note, status: :ok }
+        format.xml { render json: @note, status: :ok }
       else
         format.json { render json: @note.errors, status: :unprocessable_entity }
         format.xml { rednder xml: @note.errors, status: :unprocessable_entity }

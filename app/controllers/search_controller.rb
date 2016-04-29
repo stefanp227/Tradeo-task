@@ -8,6 +8,10 @@ class SearchController < ApplicationController
 		render json: Note.where(content: content_params[:content])
 	end
 
+	def by_tag
+		render json: Note.joins(:tags).where(tags: {name: tag_params[:tag]})
+	end
+
 	private	
 
 	def title_params
@@ -18,8 +22,8 @@ class SearchController < ApplicationController
 		params.permit(:content)
 	end
 
-	def tags_params
-		params.permit(:tags)
+	def tag_params
+		params.permit(:tag)
 	end
 
 end

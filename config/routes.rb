@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   get '/search/title/:title' => 'search#by_title'
   get '/search/content/:content' => 'search#by_content'
-  get '/search/tags/:tags' => 'search#by_tag'
-  
+  get '/search/tag/:tag' => 'search#by_tag'
+
 end
