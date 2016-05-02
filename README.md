@@ -14,25 +14,15 @@ How to use:
 
   For listing a certain note:
     `curl -X GET http://localhost:3000/notes/:id` 
-      or more specific
-        `curl -X GET http://localhost:3000/notes/1` 
 
   For listing all the tags on a certain note:
     `curl -X GET http://localhost:3000/notes/:id/tags`
-      or more specific
-       `curl -X GET http://localhost:3000/notes/1/tags`
 
   For searching by a note title:
     `curl -X get http://localhost:3000/search/title/:title`
-      or more speicific
-        `curl -X get http://localhost:3000/search/title/note1`
 
   For searching by a note content:
     `curl -X get http://localhost:3000/search/content/:content`
-      or more specific
-        `curl -X get http://localhost:3000/search/content/content1`
 
   For searching by a tag name:
     `curl -X get http://localhost:3000/search/tag/:tag`
-      or more specific
-        `curl -X get http://localhost:3000/search/tag/tag1`
